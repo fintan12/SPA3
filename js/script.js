@@ -2,7 +2,7 @@
 // We're doing reverse
 
 // I've generated a key so you can start right away
-var api_key = '614bd81902a73f0d3f6db088fdab4f68'; 
+var api_key = '614bd81902a73f0d3f6db088fdab4f68';
 
 // The end point is the url you request to get data
 var endpoint = 'http://api.opencagedata.com/geocode/v1/json?q=';
@@ -11,7 +11,7 @@ var endpoint = 'http://api.opencagedata.com/geocode/v1/json?q=';
 // http://api.opencagedata.com/geocode/v1/json?q=PLACENAME&key=YOUR-API-KEY
 
 function findLocation(){
-	var query = 'Wellington, New Zealand';
+	var query = $('#location').val();
 
 	//The query needs to be encoded for URLs - ie replaces spaces with %20's
  	var encodedQuery = encodeURIComponent(query);
@@ -28,17 +28,19 @@ function findLocation(){
 
 		$('#address').text('Address: ' + data.results[0].formatted);
 		$('#lat').text('Lattitude: ' + data.results[0].geometry.lat);
+		$('#long').text('Longitude: ' + data.results[0].geometry.lng);
+	});
 	});
 }
 
-/* TODO 
+/* TODO
 
 Also display longitude
 Allow users to enter their own query in the text box
 General Styling
 
 -- Bonus for experts
-Display the sunrise and sunset times - note that it's returned as a UNIX timestamp, 
+Display the sunrise and sunset times - note that it's returned as a UNIX timestamp,
 it will need to be converted to human readable time
 
 Use the google maps api to insert an embeded map of the location
